@@ -15,4 +15,7 @@ ENV S3_TARGET_BUCKET_NAME my-bucket-backup
 # private public-read public-read-write authenticated-read bucket-owner-read bucket-owner-full-control log-delivery-write
 ENV TARGET_FILE_ACL private
 
+RUN aws configure set default.s3.max_concurrent_requests 128
+RUN aws configure set default.s3.max_queue_size 8096
+
 CMD ["/run.sh"]
